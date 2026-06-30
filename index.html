@@ -5,13 +5,20 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="icon" type="image/svg" href="/vcl.svg" />
+	<link rel="stylesheet" href="/src/style.css">
+	<link rel="stylesheet" href="/src/styles/theme.css">
+	<link rel="stylesheet" href="/src/styles/background.css">
+	<link rel="stylesheet" href="/src/styles/score.css">
+	<link rel="stylesheet" href="/src/styles/scrollbar.css">
+	<link rel="stylesheet" href="/src/styles/test.css">
 	<title>Vietnam Community League Overlay</title>
 </head>
 
 <body>
 	<div id="app" class="absolute top-0 left-0 w-[1920px] h-[1080px]">
+		<div class="absolute top-0 left-0 size-full transition-all" id="background"></div>
 		<div id="topBar"
-			class="absolute top-0 left-0 w-full h-[100px] bg-base px-10 flex items-center justify-between text-text">
+			class="absolute top-0 left-0 w-full h-[100px] px-10 flex items-center justify-between text-custom-text">
 			<div class="flex flex-col items-start gap-2.5">
 				<div id="nameLeft" class="text-xl">Team Left</div>
 				<div id="starLeft" class="flex gap-1"></div>
@@ -23,36 +30,36 @@
 		</div>
 		<div id="main" class="absolute top-[100px] w-full h-[720px]">
 			<div class="absolute top-0 left-0 w-full h-full" id="resultContainer"></div>
-			<div class="absolute top-0 left-0 w-full h-full p-5 flex flex-col items-center gap-8 bg-base transition-all"
+			<div class="absolute top-0 left-0 w-full h-full p-5 flex flex-col items-center gap-8 transition-all"
 				style="clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" id="mappoolContainer"></div>
 		</div>
-		<div id="bottomBar" class="absolute bottom-0 left-0 w-full h-[260px] bg-base text-text">
+		<div id="bottomBar" class="absolute bottom-0 left-0 w-full h-[260px] text-custom-text">
 			<div id="scoreContainer" class="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity">
 				<div id="containerLeft" class="absolute top-0 left-0 w-[50%] h-3 flex justify-end">
 					<div id="anchorLeft"></div>
 					<div id="barLeftContainer" class="h-3 flex justify-end">
-						<div id="barLeft" class="h-full bg-red"></div>
+						<div id="barLeft" class="h-full bg-custom-side-left"></div>
 					</div>
 					<div id="scoreLeft" class="absolute text-4xl top-5 p-2.5">0</div>
 				</div>
 				<div class="absolute right-[50%] top-0 text-sm px-2.5 py-1" id="difference">0</div>
 				<div id="containerRight" class="absolute top-0 right-0 w-[50%] h-3 flex">
 					<div id="barRightContainer" class="h-3 flex justify-start">
-						<div id="barRight" class="h-full bg-blue"></div>
+						<div id="barRight" class="h-full bg-custom-side-right"></div>
 					</div>
 					<div id="anchorRight"></div>
 					<div id="scoreRight" class="absolute text-4xl top-5 p-2.5">0</div>
 				</div>
 			</div>
-			<div id="info" class="absolute top-0 left-0 w-full h-full p-5 flex gap-5 text-text">
+			<div id="info" class="absolute top-0 left-0 w-full h-full p-5 flex gap-5 text-custom-text">
 				<div id="chat"
-					class="p-5 bg-mantle rounded-xl border-1 border-surface-0 w-[50%] h-full overflow-hidden transition-opacity">
+					class="p-5 bg-custom-bg-chat rounded-xl border-1 border-custom-border w-[50%] h-full overflow-hidden transition-opacity">
 					<div id="chatInner" class="flex flex-col w-full h-full overflow-auto"></div>
 				</div>
 				<div id="beatmap" class="w-[50%] h-full flex flex-col gap-5 ">
 					<div id="metadata"
-						class="relative grow-1 h-[50%] bg-mantle flex flex-col justify-center p-5 bg-cover bg-center transition-transform rounded-xl overflow-hidden border-1 border-surface-0">
-						<div class="absolute top-0 left-0 bg-crust/70 w-full h-full"></div>
+						class="relative grow-1 h-[50%] bg-black flex flex-col justify-center p-5 bg-cover bg-center transition-transform rounded-xl overflow-hidden border-1 border-custom-border">
+						<div class="absolute top-0 left-0 bg-black/70 w-full h-full"></div>
 						<div class="relative text-2xl line-clamp-1 font-medium">
 							<span id="artist"></span>
 							-
@@ -117,6 +124,7 @@
 		<div class="flex flex-col gap-5 p-5 rounded-xl border-1 border-surface-0 bg-base text-text">
 			<div class="font-medium">Control</div>
 			<button id="toggleMappool"
+				type="button"
 				class="p-5 rounded-xl bg-base border-1 border-surface-0 cursor-pointer hover:bg-surface-0">Toggle
 				Mappool</button>
 			<div class="font-medium">Scoring Condition</div>

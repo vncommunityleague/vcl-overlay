@@ -7,7 +7,6 @@
 }
 
 #scoreLeft {
-	/* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
 	position-anchor: --score-left;
     top: anchor(bottom);
     right: anchor(right);
@@ -17,7 +16,6 @@
 }
 
 #scoreRight {
-	/* biome-ignore lint/correctness/noUnknownProperty: <explanation> */
 	position-anchor: --score-right;
     top: anchor(bottom);
     left: anchor(left);

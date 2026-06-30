@@ -59,9 +59,9 @@ export default class ChatHandler {
 		messageBody: string;
 	}) {
 		const teamColor = {
-			bot: "yellow",
-			left: "red",
-			right: "red",
+			bot: "custom-side-bot",
+			left: "custom-side-left",
+			right: "custom-side-right",
 		};
 		const element = document.createElement("div");
 		element.className = "w-full flex items-start gap-5";

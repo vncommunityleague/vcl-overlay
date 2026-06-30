@@ -99,6 +99,11 @@ export default class BeatmapHandler {
 						this.updatePicker();
 						break;
 					}
+					case "BPM": {
+						if (typeof newValue !== "number") break;
+						element.innerText = newValue.toFixed(1).replace(".0", "");
+						break;
+					}
 					default: {
 						element.innerText = newValue;
 						break;
@@ -140,7 +145,9 @@ export default class BeatmapHandler {
 			element.innerHTML = `<span style="writing-mode: vertical-lr; text-orientation: upright;">PICK</span>`;
 			element.style.width = "28px";
 			element.style.color = "white";
-			element.style.backgroundColor = hasRed ? "var(--color-red)" : "var(--color-blue)";
+			element.style.backgroundColor = hasRed
+				? "var(--color-custom-side-left)"
+				: "var(--color-custom-side-right)";
 			return;
 		}
 		element.innerHTML = "";

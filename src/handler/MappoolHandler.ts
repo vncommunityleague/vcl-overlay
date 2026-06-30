@@ -123,12 +123,12 @@ class BeatmapContainer {
 					switch (this.side) {
 						case Side.LEFT: {
 							this.beatmapHandler.updatePickedMaps(this.data.id, PickAction.PICK_RED);
-							indicator.style.backgroundColor = "var(--color-red)";
+							indicator.style.backgroundColor = "var(--color-custom-side-left)";
 							break;
 						}
 						case Side.RIGHT: {
 							this.beatmapHandler.updatePickedMaps(this.data.id, PickAction.PICK_BLUE);
-							indicator.style.backgroundColor = "var(--color-blue)";
+							indicator.style.backgroundColor = "var(--color-custom-side-right)";
 							break;
 						}
 						default: {
@@ -140,17 +140,17 @@ class BeatmapContainer {
 				case Status.BANNED: {
 					indicator.innerHTML = `<span style="writing-mode: vertical-lr; text-orientation: upright;">BAN</span>`;
 					indicator.style.width = "20px";
-					indicator.style.backgroundColor = "var(--color-base)";
+					indicator.style.backgroundColor = "var(--color-custom-bg)";
 
 					switch (this.side) {
 						case Side.LEFT: {
 							this.beatmapHandler.updatePickedMaps(this.data.id, PickAction.REMOVE_PICK);
-							indicator.style.color = "var(--color-red)";
+							indicator.style.color = "var(--color-custom-side-left)";
 							break;
 						}
 						case Side.RIGHT: {
 							this.beatmapHandler.updatePickedMaps(this.data.id, PickAction.REMOVE_PICK);
-							indicator.style.color = "var(--color-blue)";
+							indicator.style.color = "var(--color-custom-side-right)";
 							break;
 						}
 						default: {
@@ -224,16 +224,21 @@ export default class MappoolHandler {
 
 		const mappoolContainer =
 			document.querySelector<HTMLDivElement>("#mappoolContainer");
-		if (!mappoolContainer) return;
+		const background = document.querySelector<HTMLDivElement>("#background");
+		
+		if (!mappoolContainer || !background) return;
 
 		if (this.showMappool) {
 			mappoolContainer.style.clipPath =
 				"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
+
+			background.style.clipPath = "polygon(0% 0%, 100% 0%, 100% 100px, 100% 100px, 100% 820px, 100% 820px, 100% 100%, 0% 100%)";
 		}
 
 		if (!this.showMappool) {
 			mappoolContainer.style.clipPath =
 				"polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)";
+			background.style.clipPath = "polygon(0% 0%, 100% 0%, 100% 100px, 0% 100px, 0% 820px, 100% 820px, 100% 100%, 0% 100%)";
 		}
 	}
 

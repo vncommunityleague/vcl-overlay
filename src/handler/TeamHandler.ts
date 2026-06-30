@@ -41,7 +41,7 @@ export default class TeamHandler {
 				switch (value.id) {
 					case "nameLeft":
 					case "nameRight": {
-						element.innerText = newValue;
+						element.innerText = newValue || "Placeholder";
 						break;
 					}
 					case "starLeft":
@@ -51,8 +51,8 @@ export default class TeamHandler {
 								element,
 								data.tourney.manager.stars[
 									value.id === "starLeft" ? "left" : "right"
-								],
-								newValue ?? 1,
+								] ?? 0,
+								newValue ?? 3,
 							);
 							break;
 						}
@@ -60,7 +60,7 @@ export default class TeamHandler {
 						this.createStars(
 							element,
 							newValue ?? 0,
-							data.tourney.manager.bestOF ?? 1,
+							data.tourney.manager.bestOF ?? 3,
 						);
 
 						break;
@@ -85,8 +85,8 @@ export default class TeamHandler {
 
 	createStar(isMarked: boolean) {
 		const star = document.createElement("div");
-		star.className = "w-[40px] h-[15px] rounded-full bg-mantle border-1 border-surface-0";
-		if (isMarked) star.classList.add("bg-text");
+		star.className = "w-[40px] h-[15px] rounded-full border-1 border-custom-star-border";
+		if (isMarked) star.classList.add("bg-custom-star-fill");
 
 		return star;
 	}

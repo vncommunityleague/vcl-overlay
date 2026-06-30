@@ -1,0 +1,15 @@
+#background {
+	background-color: var(--color-custom-bg);
+	background-size: cover;
+	background-position: center;
+	clip-path: polygon(
+		0% 0%,
+		100% 0%,
+		100% 100px,
+		0% 100px,
+		0% 820px,
+		100% 820px,
+		100% 100%,
+		0% 100%
+	);
+}

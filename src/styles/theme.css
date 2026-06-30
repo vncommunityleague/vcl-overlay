@@ -20,4 +20,26 @@
 	--color-yellow: #f9e2af;
 	--color-green: #a6e3a1;
 	--color-blue: #89b4fa;
+
+	/* YOUR MODIFICATION MAY START HERE*/
+	--color-custom-bg: var(--color-base);
+	--color-custom-bg-chat: var(--color-mantle);
+	--color-custom-border: var(--color-surface-0);
+	--color-custom-text: var(--color-text);
+	--color-custom-side-left: var(--color-blue);
+	--color-custom-side-right: var(--color-red);
+	--color-custom-side-bot: var(--color-yellow);
+	--color-custom-star-border: var(--color-surface-2);
+	--color-custom-star-fill: var(--color-text);
+
+	/* DEBUG COLORS*/
+	/*--color-custom-bg: black;*/
+	/*--color-custom-bg-chat: black;*/
+	/*--color-custom-border: #ffffff;*/
+	/*--color-custom-text: #ffffff;*/
+	/*--color-custom-side-left: red;*/
+	/*--color-custom-side-right: blue;*/
+	/*--color-custom-side-bot: yellow;*/
+	/*--color-custom-star-border: var(--color-white);*/
+	/*--color-custom-star-fill: var(--color-white);*/
 }
