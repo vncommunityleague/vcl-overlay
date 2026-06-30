@@ -7,7 +7,7 @@ A complete rework of [vcl-tournament-overlay-tosu](https://github.com/vncommunit
 
 ## Setup
 - Install [tosu](https://github.com/tosuapp/tosu/releases/latest)
-- Download the latest release from the [Release](https://github.com/vncommunityleague/vcl-overlay/Releases) page of this repository
+- Download the latest release from the [Release](https://github.com/vncommunityleague/vcl-overlay/releases/latest) page of this repository
 - Extract the downloaded zip file to `static` folder of tosu.
 - Your file structure should be like this
 ```
