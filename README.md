@@ -30,9 +30,16 @@ static/
 - **Toggle Mappool** to show the mappool panel
   - **Left Click** a beatmap to pick the beatmap for **Left** team
   - **Shift + Left Click** a beatmap to ban the beatmap for **Left** team
+  - **Alt + Left Click** a beatmap to protect the beatmap for **Left** team
   - **Right Click** a beatmap to pick the beatmap for **Right** team
   - **Shift + Right Click** a beatmap to ban the beatmap for **Right** team
+  - **Alt + Right Click** a beatmap to ban the beatmap for **Right** team
   - **Ctrl + Click / Right Click** a beatmap to remove any ban/pick on the beatmap
+
+# Customization
+This overlay allows some customizations without having to modify the source code directly, which includes:
+- Overlay Background Image by replacing `assets/background.png`
+- Colors of the elements by editing `assets/src/styles/theme.css`
 
 ## Development
 Just as a head-up, since this overlay is completely reworked on Vite, you cannot directly change the HTML, CSS and JS directly just like the old overlay but rather spin up a development server on your local machine and work with it for modification. After you have done everything, you should build the overlay and paste the files in the `dist` folder to tosu folder again.
