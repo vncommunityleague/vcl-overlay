@@ -175,7 +175,7 @@ class BeatmapContainer {
 					break;
 				}
 				case Status.PROTECTED: {
-					indicator.innerHTML = `<span style="writing-mode: vertical-lr; text-orientation: upright;">LOCK</span>`;
+					indicator.innerHTML = `<span style="writing-mode: vertical-lr; text-orientation: upright;">PROT</span>`;
 					indicator.style.width = "20px";
 					indicator.style.backgroundColor = "var(--color-custom-protect-badge)";
 					indicator.style.color = "var(--color-custom-protect-badge-text)";
