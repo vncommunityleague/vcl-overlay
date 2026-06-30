@@ -1,12 +1,13 @@
 import axios from "axios";
 import type { Beatmap, Data, Modpool } from "../types";
-import { PickAction } from "./BeatmapHandler";
 import type BeatmapHandler from "./BeatmapHandler";
+import { PickAction } from "./BeatmapHandler";
 
 enum Status {
 	NIL = 0,
 	PICKED = 1,
 	BANNED = 2,
+	PROTECTED = 3
 }
 
 enum Side {
@@ -27,7 +28,7 @@ class BeatmapContainer {
 		this.data = data;
 
 		const ele = document.createElement("div");
-		ele.classList.add("w-[500px]", "h-[60px]", "flex", "rounded-xl", "overflow-hidden", "border-1", "border-surface-0", "select-none");
+		ele.classList.add("w-[500px]", "h-[60px]", "flex", "rounded-xl", "overflow-hidden", "border-spacing-custom-border", "border-surface-0", "select-none");
 		this.ele = ele;
 
 		this.ele.innerHTML = `
@@ -62,7 +63,7 @@ class BeatmapContainer {
 
 	handleClick(event: MouseEvent) {
 		event.preventDefault();
-		const { shiftKey, ctrlKey, type } = event;
+		const { shiftKey, ctrlKey, altKey, type } = event;
 
 		switch (type) {
 			case "click": {
@@ -76,6 +77,13 @@ class BeatmapContainer {
 				if (ctrlKey) {
 					this.side = Side.NIL;
 					this.status = Status.NIL;
+					this.updateStatus();
+					return;
+				}
+				
+				if (altKey) {
+					this.side = Side.LEFT;
+					this.status = Status.PROTECTED;
 					this.updateStatus();
 					return;
 				}
@@ -96,6 +104,13 @@ class BeatmapContainer {
 				if (ctrlKey) {
 					this.side = Side.NIL;
 					this.status = Status.NIL;
+					this.updateStatus();
+					return;
+				}
+
+				if (altKey) {
+					this.side = Side.RIGHT;
+					this.status = Status.PROTECTED;
 					this.updateStatus();
 					return;
 				}
@@ -140,7 +155,7 @@ class BeatmapContainer {
 				case Status.BANNED: {
 					indicator.innerHTML = `<span style="writing-mode: vertical-lr; text-orientation: upright;">BAN</span>`;
 					indicator.style.width = "20px";
-					indicator.style.backgroundColor = "var(--color-custom-bg)";
+					indicator.style.backgroundColor = "var(--color-custom-ban-badge)";
 
 					switch (this.side) {
 						case Side.LEFT: {
@@ -155,6 +170,24 @@ class BeatmapContainer {
 						}
 						default: {
 							indicator.style.color = "";
+						}
+					}
+					break;
+				}
+				case Status.PROTECTED: {
+					indicator.innerHTML = `<span style="writing-mode: vertical-lr; text-orientation: upright;">LOCK</span>`;
+					indicator.style.width = "20px";
+					indicator.style.backgroundColor = "var(--color-custom-protect-badge)";
+					indicator.style.color = "var(--color-custom-protect-badge-text)";
+
+					switch (this.side) {
+						case Side.LEFT: {
+							this.beatmapHandler.updatePickedMaps(this.data.id, PickAction.REMOVE_PICK);
+							break;
+						}
+						case Side.RIGHT: {
+							this.beatmapHandler.updatePickedMaps(this.data.id, PickAction.REMOVE_PICK);
+							break;
 						}
 					}
 					break;

@@ -41,7 +41,7 @@ export default class TeamHandler {
 				switch (value.id) {
 					case "nameLeft":
 					case "nameRight": {
-						element.innerText = newValue || "Placeholder";
+						element.innerText = newValue;
 						break;
 					}
 					case "starLeft":

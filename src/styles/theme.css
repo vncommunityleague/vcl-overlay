@@ -21,18 +21,50 @@
 	--color-green: #a6e3a1;
 	--color-blue: #89b4fa;
 
-	/* YOUR MODIFICATION MAY START HERE*/
-	--color-custom-bg: var(--color-base);
-	--color-custom-bg-chat: var(--color-mantle);
-	--color-custom-border: var(--color-surface-0);
-	--color-custom-text: var(--color-text);
-	--color-custom-side-left: var(--color-blue);
-	--color-custom-side-right: var(--color-red);
+	/* YOUR MODIFICATION MAY START HERE */
+	/* Background Color */
+	--color-custom-bg: green;
+	/* Background Color of Chatbox*/
+	--color-custom-bg-chat: rgba(0 0 0 / 0.5);
+	/* Border Color*/
+	--color-custom-border: transparent;
+	/* Border Size */
+	--spacing-custom-border: 0;
+	/* Text Color */
+	--color-custom-text: white;
+	/* Left Side Color */
+	--color-custom-side-left: #ff4f75;
+	/* Right Side Color */
+	--color-custom-side-right: #4f92ff;
+	/* Bot Side Color in Chatbox */
 	--color-custom-side-bot: var(--color-yellow);
-	--color-custom-star-border: var(--color-surface-2);
-	--color-custom-star-fill: var(--color-text);
+	/* Border Color of Stars Counter */
+	--color-custom-star-border: white;
+	/* Fill Color of Stars Counter */
+	--color-custom-star-fill: white;
+	/* Ban Badge Background Color */
+	--color-custom-ban-badge: white;
+	/* Protect Badge Background Color */
+	--color-custom-protect-badge: white;
+	/* Protect Badge Text Color */
+	--color-custom-protect-badge-text: black;
 
-	/* DEBUG COLORS*/
+	/* Catpuccin */
+	/*--color-custom-bg: var(--color-base);*/
+	/*--color-custom-bg-chat: var(--color-mantle);*/
+	/*--color-custom-border: var(--color-surface-0);*/
+	/*--color-custom-text: var(--color-text);*/
+	/*--color-custom-side-left: var(--color-blue);*/
+	/*--color-custom-side-right: var(--color-red);*/
+	/*--color-custom-side-bot: var(--color-yellow);*/
+	/*--color-custom-star-border: var(--color-surface-2);*/
+	/*--color-custom-star-fill: var(--color-text);*/
+	/*--spacing-custom-border-size: 1;*/
+	/*--color-custom-ban-badge: var(--color-base);*/
+	/*--color-custom-protect-badge: #4fff69;*/
+	/*--color-custom-protect-badge-text: #59ff72;*/
+
+	/* Debug */
 	/*--color-custom-bg: black;*/
 	/*--color-custom-bg-chat: black;*/
 	/*--color-custom-border: #ffffff;*/

@@ -1,5 +1,5 @@
 #background {
-	background-color: var(--color-custom-bg);
+	background: url("/assets/background.png"), linear-gradient(to right, var(--color-custom-bg), var(--color-custom-bg));
 	background-size: cover;
 	background-position: center;
 	clip-path: polygon(
