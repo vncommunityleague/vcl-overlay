@@ -36,7 +36,7 @@ static/
   - **Alt + Right Click** a beatmap to ban the beatmap for **Right** team
   - **Ctrl + Click / Right Click** a beatmap to remove any ban/pick on the beatmap
 
-# Customization
+## Customization
 This overlay allows some customizations without having to modify the source code directly, which includes:
 - Overlay Background Image by replacing `assets/background.png`
 - Colors of the elements by editing `assets/src/styles/theme.css`
@@ -69,3 +69,8 @@ bun run build
 **Who should I contact to get support?**
 - For additional support, DM `itsmehoaq` on Discord (or ping in osu! Tournament Hub) - note that any requests regarding modifying overlay design or functionality will be ignored.
 - If you are using this overlay, please make a fork so we know which tournament this is being used for :D
+
+## Screenshots
+<img width="1917" height="1075" alt="image" src="https://github.com/user-attachments/assets/69908ac5-8f5e-48dc-9150-da6b44a98e9a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2b1055a6-647c-46a2-b00a-50e4116d8c29" />
+
