@@ -245,8 +245,7 @@ export default class MappoolHandler {
 	mods: ModContainer[] = [];
 	showMappool = false;
 
-	constructor(beatmapHandler: BeatmapHandler) {
-		this.init(beatmapHandler);
+	constructor() {
 		document
 			.querySelector("#toggleMappool")
 			?.addEventListener("click", () => this.toggleMappool());
@@ -265,13 +264,13 @@ export default class MappoolHandler {
 			mappoolContainer.style.clipPath =
 				"polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
 
-			background.style.clipPath = "polygon(0% 0%, 100% 0%, 100% 100px, 100% 100px, 100% 820px, 100% 820px, 100% 100%, 0% 100%)";
+			background.style.clipPath = "polygon(0% 0%, 100% 0%, 100% 80px, 100% 80px, 100% 800px, 100% 800px, 100% 100%, 0% 100%)";
 		}
 
 		if (!this.showMappool) {
 			mappoolContainer.style.clipPath =
 				"polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)";
-			background.style.clipPath = "polygon(0% 0%, 100% 0%, 100% 100px, 0% 100px, 0% 820px, 100% 820px, 100% 100%, 0% 100%)";
+			background.style.clipPath = "polygon(0% 0%, 100% 0%, 100% 80px, 0% 80px, 0% 800px, 100% 800px, 100% 100%, 0% 100%)";
 		}
 	}
 

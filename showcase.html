@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg" href="/vcl.svg" />
+		<link rel="stylesheet" href="/src/style.css" />
+		<link rel="stylesheet" href="/src/styles/theme.css" />
+		<link rel="stylesheet" href="/src/styles/scrollbar.css" />
+		<title>hyrn's Skillcap Cup Showcase</title>
+	</head>
+
+	<body>
+		<div id="app" class="absolute top-0 left-0 w-[1920px] h-[1080px]">
+			<div class="absolute bottom-0 left-0 w-full h-20 flex justify-between items-center bg-base">
+				<div
+					id="beatmap"
+					class="relative text-sm w-[80%] h-full flex items-center gap-3 px-9 text-white rounded-l-full overflow-hidden bg-cover bg-center ml-auto"
+				>
+					<div class="absolute top-0 left-0 bg-gradient-to-r from-black/40 to-black bg-cover w-full h-full"></div>
+					<div class="relative h-full flex-1 flex items-center justify-between">
+						<div id="stats" class="relative justify-center flex flex-col p-5 gap-2 shrink-0">
+							<div class="flex gap-2">
+								<div style="text-box: trim-both cap alphabetic">CS: <span class="font-bold" id="CS"></span></div>
+								<div style="text-box: trim-both cap alphabetic">AR: <span class="font-bold" id="AR"></span></div>
+								<div style="text-box: trim-both cap alphabetic">OD: <span class="font-bold" id="OD"></span></div>
+								<div style="text-box: trim-both cap alphabetic">BPM: <span class="font-bold" id="BPM"></span></div>
+							</div>
+							<div class="flex gap-2">
+								<div style="text-box: trim-both cap alphabetic">Length: <span class="font-bold" id="length"></span></div>
+								<div style="text-box: trim-both cap alphabetic">Star Rating: <span class="font-bold" id="SR"></span>*</div>
+							</div>
+						</div>
+						<div id="metadata" class="relative flex flex-col justify-center items-end gap-2j flex-1 overflow-hidden">
+							<div class="text-[16px] font-bold w-full overflow-clip text-right text-ellipsis whitespace-nowrap pb-1" style="text-box: trim-both cap alphabetic">
+								<span id="artist"></span>
+								-
+								<span id="title"></span>
+							</div>
+							<div class="font-medium w-full overflow-clip text-right text-ellipsis whitespace-nowrap pb-1" style="text-box: trim-both cap alphabetic">[<span id="difficulty"></span>]</div>
+						</div>
+					</div>
+					<div id="modIndex" class="relative text-white font-bold text-5xl" style="text-box: trim-both cap alphabetic">NM5</div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="/src/showcase.ts"></script>
+	</body>
+</html>

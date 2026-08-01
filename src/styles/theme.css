@@ -33,9 +33,9 @@
 	/* Text Color */
 	--color-custom-text: white;
 	/* Left Side Color */
-	--color-custom-side-left: #ff4f75;
+	--color-custom-side-left: #BD4D4D;
 	/* Right Side Color */
-	--color-custom-side-right: #4f92ff;
+	--color-custom-side-right: #CCBA78;
 	/* Bot Side Color in Chatbox */
 	--color-custom-side-bot: var(--color-yellow);
 	/* Border Color of Stars Counter */

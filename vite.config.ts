@@ -1,4 +1,4 @@
-import path from "node:path";
+import path, { resolve } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 
@@ -36,6 +36,10 @@ export default defineConfig({
 					],
 				},
 				minifyInternalExports: false,
+			},
+			input: {
+				main: resolve(import.meta.dirname, "index.html"),
+				showcase: resolve(import.meta.dirname, "showcase.html"),
 			},
 		},
 		cssCodeSplit: true,

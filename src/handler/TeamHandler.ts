@@ -39,9 +39,24 @@ export default class TeamHandler {
 				if (element === null) return;
 
 				switch (value.id) {
-					case "nameLeft":
+					case "nameLeft": {
+						const name = newValue || "";
+						element.innerText = name;
+
+						const avatar = document.querySelector<HTMLDivElement>("#avatarLeft");
+						if (!avatar) break;
+
+						avatar.style.backgroundImage = `url(https://api.try-z.net/a/${name})`;
+						break;
+					}
 					case "nameRight": {
-						element.innerText = newValue;
+						const name = newValue || "";
+						element.innerText = name;
+
+						const avatar = document.querySelector<HTMLDivElement>("#avatarRight");
+						if (!avatar) break;
+
+						avatar.style.backgroundImage = `url(https://api.try-z.net/a/${encodeURIComponent(name)})`;
 						break;
 					}
 					case "starLeft":
@@ -51,16 +66,18 @@ export default class TeamHandler {
 								element,
 								data.tourney.manager.stars[
 									value.id === "starLeft" ? "left" : "right"
-								] ?? 0,
-								newValue ?? 3,
+								] || 0,
+								newValue || 3,
+								value.id === "starLeft" ? "left" : "right",
 							);
 							break;
 						}
 
 						this.createStars(
 							element,
-							newValue ?? 0,
-							data.tourney.manager.bestOF ?? 3,
+							newValue || 0,
+							data.tourney.manager.bestOF || 3,
+							value.id === "starLeft" ? "left" : "right",
 						);
 
 						break;
@@ -73,20 +90,37 @@ export default class TeamHandler {
 		}
 	}
 
-	createStars(element: HTMLElement, number: number, bestOF: number) {
+	createStars(
+		element: HTMLElement,
+		number: number,
+		bestOF: number,
+		side: "left" | "right" = "left",
+	) {
 		const maxStars = Math.floor((bestOF + 1) / 2);
 		const stars = [...Array(maxStars)].map((_, idx: number) =>
-			this.createStar(idx < number),
+			this.createStar(side, idx < number, idx === number - 1),
 		);
 
 		element.innerHTML = "";
 		element.append(...stars);
 	}
 
-	createStar(isMarked: boolean) {
+	createStar(
+		side: "left" | "right" = "left",
+		isMarked: boolean,
+		isLastMarked = false,
+	) {
 		const star = document.createElement("div");
-		star.className = "w-[40px] h-[15px] rounded-full border-1 border-custom-star-border";
-		if (isMarked) star.classList.add("bg-custom-star-fill");
+		star.className = "size-10 rounded-full border-2";
+		star.classList.add(
+			side === "left" ? "border-custom-side-left" : "border-custom-side-right",
+		);
+		if (isMarked) {
+			star.classList.add(
+				isLastMarked ? "w-15" : "aspect-square",
+				side === "left" ? "bg-custom-side-left" : "bg-custom-side-right",
+			);
+		}
 
 		return star;
 	}

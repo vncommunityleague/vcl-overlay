@@ -1,158 +1,212 @@
 <!doctype html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg" href="/vcl.svg" />
+		<link rel="stylesheet" href="/src/style.css" />
+		<link rel="stylesheet" href="/src/styles/theme.css" />
+		<link rel="stylesheet" href="/src/styles/background.css" />
+		<link rel="stylesheet" href="/src/styles/score.css" />
+		<link rel="stylesheet" href="/src/styles/scrollbar.css" />
+		<link rel="stylesheet" href="/src/styles/test.css" />
+		<title>hyrn's Skillcap Cup Overlay</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/svg" href="/vcl.svg" />
-	<link rel="stylesheet" href="/src/style.css">
-	<link rel="stylesheet" href="/src/styles/theme.css">
-	<link rel="stylesheet" href="/src/styles/background.css">
-	<link rel="stylesheet" href="/src/styles/score.css">
-	<link rel="stylesheet" href="/src/styles/scrollbar.css">
-	<link rel="stylesheet" href="/src/styles/test.css">
-	<title>Vietnam Community League Overlay</title>
-</head>
-
-<body>
-	<div id="app" class="absolute top-0 left-0 w-[1920px] h-[1080px]">
-		<div class="absolute top-0 left-0 size-full transition-all" id="background"></div>
-		<div id="topBar"
-			class="absolute top-0 left-0 w-full h-[100px] px-10 flex items-center justify-between text-custom-text">
-			<div class="flex flex-col items-start gap-2.5">
-				<div id="nameLeft" class="text-xl">Team Left</div>
-				<div id="starLeft" class="flex gap-1"></div>
-			</div>
-			<div class="flex flex-col items-end gap-2.5">
-				<div id="nameRight" class="text-xl">Team Right</div>
-				<div id="starRight" class="flex gap-1 flex-row-reverse"></div>
-			</div>
-		</div>
-		<div id="main" class="absolute top-[100px] w-full h-[720px]">
-			<div class="absolute top-0 left-0 w-full h-full" id="resultContainer"></div>
-			<div class="absolute top-0 left-0 w-full h-full p-5 flex flex-col items-center gap-8 transition-all"
-				style="clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" id="mappoolContainer"></div>
-		</div>
-		<div id="bottomBar" class="absolute bottom-0 left-0 w-full h-[260px] text-custom-text">
-			<div id="scoreContainer" class="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity">
-				<div id="containerLeft" class="absolute top-0 left-0 w-[50%] h-3 flex justify-end">
-					<div id="anchorLeft"></div>
-					<div id="barLeftContainer" class="h-3 flex justify-end">
-						<div id="barLeft" class="h-full bg-custom-side-left"></div>
-					</div>
-					<div id="scoreLeft" class="absolute text-4xl top-5 p-2.5">0</div>
-				</div>
-				<div class="absolute right-[50%] top-0 text-sm px-2.5 py-1" id="difference">0</div>
-				<div id="containerRight" class="absolute top-0 right-0 w-[50%] h-3 flex">
-					<div id="barRightContainer" class="h-3 flex justify-start">
-						<div id="barRight" class="h-full bg-custom-side-right"></div>
-					</div>
-					<div id="anchorRight"></div>
-					<div id="scoreRight" class="absolute text-4xl top-5 p-2.5">0</div>
-				</div>
-			</div>
-			<div id="info" class="absolute top-0 left-0 w-full h-full p-5 flex gap-5 text-custom-text">
-				<div id="chat"
-					class="p-5 bg-custom-bg-chat rounded-xl border-spacing-custom-border border-custom-border w-[50%] h-full overflow-hidden transition-opacity">
-					<div id="chatInner" class="flex flex-col w-full h-full overflow-auto"></div>
-				</div>
-				<div id="beatmap" class="w-[50%] h-full flex flex-col gap-5 ">
-					<div id="metadata"
-						class="relative grow-1 h-[50%] bg-black flex flex-col justify-center p-5 bg-cover bg-center transition-transform rounded-xl overflow-hidden border-spacing-custom-border border-custom-border">
-						<div class="absolute top-0 left-0 bg-black/70 w-full h-full"></div>
-						<div class="relative text-2xl line-clamp-1 font-medium">
-							<span id="artist"></span>
-							-
-							<span id="title"></span>
+	<body>
+		<div id="app" class="absolute top-0 left-0 w-[1920px] h-[1080px]">
+			<div class="absolute top-0 left-0 size-full transition-all" id="background"></div>
+			<div class="absolute top-0 left-0 w-full h-20 flex justify-between items-center">
+				<div id="roundName" class="ml-6 text-white text-5xl font-bold uppercase" style="text-box: trim-both cap alphabetic">GRANDFINALS</div>
+				<div
+					id="beatmap"
+					class="relative text-sm w-[50%] h-full flex items-center gap-3 px-9 text-white rounded-l-full overflow-hidden bg-cover bg-center"
+					style="text-box-trim: trim-both; text-box-edge: cap alphabetic"
+				>
+					<div class="absolute top-0 left-0 bg-gradient-to-r from-black/40 to-black bg-cover w-full h-full"></div>
+					<div class="relative h-full flex-1 flex items-center gap-5 justify-between">
+						<div id="stats" class="relative justify-center flex flex-col p-5 gap-2 shrink-0">
+							<div class="flex gap-2">
+								<div style="text-box: trim-both cap alphabetic">CS: <span class="font-bold" id="CS"></span></div>
+								<div style="text-box: trim-both cap alphabetic">AR: <span class="font-bold" id="AR"></span></div>
+								<div style="text-box: trim-both cap alphabetic">OD: <span class="font-bold" id="OD"></span></div>
+								<div style="text-box: trim-both cap alphabetic">BPM: <span class="font-bold" id="BPM"></span></div>
+							</div>
+							<div class="flex gap-2">
+								<div style="text-box: trim-both cap alphabetic">Length: <span class="font-bold" id="length"></span></div>
+								<div style="text-box: trim-both cap alphabetic">Star Rating: <span class="font-bold" id="SR"></span>*</div>
+							</div>
 						</div>
-						<div class="relative text-lg line-clamp-1">
-							Difficulty: <span id="difficulty"></span>
-							-
-							Mapper: <span id="mapper"></span>
-						</div>
-						<div id="picker" class="absolute w-[0px] right-0 h-full text-lg font-semibold justify-center text-center overflow-hidden transition-all"></div>
-					</div>
-					<div id="stats" class="w-full h-[50%] text-lg justify-center flex flex-col p-5">
-						<div class="flex gap-2.5">
-							<div>CS: <span class="font-medium" id="CS"></span></div> /
-							<div>AR: <span class="font-medium" id="AR"></span></div> /
-							<div>OD: <span class="font-medium" id="OD"></span></div> /
-							<div>BPM: <span class="font-medium" id="BPM"></span></div>
-						</div>
-						<div class="flex gap-5">
-							<div>Star Rating: <span class="font-medium" id="SR"></span>*</div>/
-							<div>Length: <span class="font-medium" id="length"></span></div>
+						<div id="metadata" class="relative flex flex-col justify-center items-end gap-1 flex-1 overflow-hidden">
+							<div class="w-full text-[16px] font-bold overflow-clip text-right text-ellipsis whitespace-nowrap pb-1" style="text-box: trim-both cap alphabetic">
+								<span id="artist"></span>
+								-
+								<span id="title"></span>
+							</div>
+							<div class="font-medium w-full overflow-clip text-right text-ellipsis whitespace-nowrap pb-1" style="text-box: trim-both cap alphabetic">[<span id="difficulty"></span>]</div>
 						</div>
 					</div>
+					<div id="modIndex" class="relative text-white font-bold text-5xl" style="text-box: trim-both cap alphabetic"></div>
+					<div
+						id="picker"
+						class="absolute w-[0px] right-0 h-full text-lg font-semibold justify-center text-center overflow-hidden transition-all hidden"
+					></div>
+				</div>
+			</div>
+			<div id="topBar" class="absolute bottom-50 left-0 w-full h-20 flex items-center justify-between gap-2 text-custom-text transition-all">
+				<div class="flex items-center gap-12 flex-1 h-full">
+					<div id="avatarLeft" class="h-full w-30 rounded-r-full bg-custom-side-left bg-cover bg-center"></div>
+					<div id="nameLeft" class="text-5xl font-medium" style="text-box: trim-both cap alphabetic">Team Left</div>
+					<div id="starLeft" class="flex gap-2 ml-auto flex-row-reverse"></div>
+				</div>
+				<div class="flex flex-row-reverse items-center gap-12 flex-1 h-full">
+					<div id="avatarRight" class="h-full w-30 rounded-l-full bg-custom-side-right bg-cover bg-center"></div>
+					<div id="nameRight" class="text-5xl font-medium" style="text-box: trim-both cap alphabetic">Team Right</div>
+					<div id="starRight" class="flex gap-2 flex-row mr-auto"></div>
+				</div>
+			</div>
+			<div id="main" class="absolute top-20 w-full h-[720px]">
+				<div class="absolute top-0 left-0 w-full h-full" id="resultContainer"></div>
+				<div
+					class="absolute top-0 left-0 w-full h-full p-5 flex flex-col items-center gap-8 transition-all"
+					style="clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)"
+					id="mappoolContainer"
+				></div>
+			</div>
+			<div id="bottomBar" class="absolute bottom-0 left-0 w-full h-[280px] text-custom-text">
+				<div id="scoreContainer" class="absolute top-0 left-0 w-full opacity-0 transition-opacity p-2 flex gap-2">
+					<div id="containerLeft" class="flex-1 flex justify-end h-20">
+						<div
+							id="barLeftContainer"
+							class="w-full h-full items-center flex justify-end bg-gradient-to-r from-[color-mix(in_oklab,var(--color-custom-side-left),black_40%)] to-custom-side-left rounded-full px-9"
+						>
+							<div id="barLeft" class="h-full bg-custom-side-left hidden"></div>
+							<div
+								id="scoreLeft"
+								class="text-5xl top-5 p-2.5 text-[color-mix(in_oklab,var(--color-custom-side-left),black_60%)]"
+								style="text-box: trim-both cap alphabetic"
+							>
+								0
+							</div>
+						</div>
+					</div>
+					<div id="containerRight" class="flex-1 h-full flex">
+						<div
+							id="barRightContainer"
+							class="w-full h-20 items-center flex justify-start bg-gradient-to-l from-[color-mix(in_oklab,var(--color-custom-side-right),black_40%)] to-custom-side-right rounded-full px-9"
+						>
+							<div id="barRight" class="h-full bg-custom-side-right hidden"></div>
+							<div
+								id="scoreRight"
+								class="text-5xl top-5 p-2.5 text-[color-mix(in_oklab,var(--color-custom-side-right),black_60%)]"
+								style="text-box: trim-both cap alphabetic"
+							>
+								0
+							</div>
+						</div>
+					</div>
+					<div
+						class="absolute mx-auto left-0 right-0 text-center top-25 font-bold text-4xl"
+						id="difference"
+						style="text-box: trim-both cap alphabetic"
+					>
+						0
+					</div>
+				</div>
+				<div id="info" class="absolute top-0 left-0 w-full h-full flex justify-center items-end text-custom-text">
+					<div
+						id="chat"
+						class="p-5 bg-custom-bg-chat rounded-t-xl border-spacing-custom-border border-custom-border w-[50%] h-50 overflow-hidden transition-opacity"
+					>
+						<div id="chatInner" class="flex flex-col w-full h-full overflow-auto"></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="debug" class="absolute top-[1080px] p-5 bg-mantle w-[1920px] flex gap-5 text-text">
-		<div class="flex flex-col gap-5 p-5 rounded-xl border-1 border-surface-0 bg-base">
-			<div class="flex w-full items-center gap-5">
-				<input type="checkbox" name="testMode" id="testMode">
-				<label for="testMode" class="font-medium">Test Mode</label>
-			</div>
-			<div class="flex w-full flex-col gap-2.5">
-				<div class="font-medium text-lg">Scoring</div>
-				<div class="flex w-full gap-5">
-					<div class="flex gap-5 items-center">
-						<label for="testScoreLeft">Left</label>
-						<input type="number" name="testScoreLeft" id="testScoreLeft" value="0">
+		<div id="debug" class="absolute top-[1080px] p-5 bg-mantle w-[1920px] flex gap-5 text-text">
+			<div class="flex flex-col gap-5 p-5 rounded-xl border-1 border-surface-0 bg-base">
+				<div class="flex w-full items-center gap-5">
+					<input type="checkbox" name="testMode" id="testMode" />
+					<label for="testMode" class="font-medium">Test Mode</label>
+				</div>
+				<div class="flex w-full flex-col gap-2.5">
+					<div class="font-medium text-lg">Scoring</div>
+					<div class="flex w-full gap-5">
+						<div class="flex gap-5 items-center">
+							<label for="testScoreLeft">Left</label>
+							<input type="number" name="testScoreLeft" id="testScoreLeft" value="0" />
+						</div>
+						<div class="flex gap-5 items-center">
+							<label for="testScoreRight">Right</label>
+							<input type="number" name="testScoreRight" id="testScoreRight" value="0" />
+						</div>
 					</div>
-					<div class="flex gap-5 items-center">
-						<label for="testScoreRight">Right</label>
-						<input type="number" name="testScoreRight" id="testScoreRight" value="0">
+				</div>
+				<div class="flex w-full flex-col gap-2.5">
+					<div class="font-medium text-lg">Game State</div>
+					<div class="flex w-full gap-5">
+						<div class="flex gap-5 items-center">
+							<input type="checkbox" name="testScoreVisible" id="testScoreVisible" />
+							<label for="testScoreVisible">Score Visible?</label>
+						</div>
+						<div class="flex gap-5 items-center">
+							<input type="checkbox" name="testStarsVisible" id="testStarsVisible" />
+							<label for="testStarsVisible">Stars Visible?</label>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="flex w-full flex-col gap-2.5">
-				<div class="font-medium text-lg">Game State</div>
-				<div class="flex w-full gap-5">
-					<div class="flex gap-5 items-center">
-						<input type="checkbox" name="testScoreVisible" id="testScoreVisible">
-						<label for="testScoreVisible">Score Visible?</label>
+			<div class="flex flex-col gap-5 p-5 rounded-xl border-1 border-surface-0 bg-base text-text">
+				<div class="font-medium">Control</div>
+				<button id="toggleMappool" type="button" class="p-5 rounded-xl bg-base border-1 border-surface-0 cursor-pointer hover:bg-surface-0">
+					Toggle Mappool
+				</button>
+				<div class="font-medium">Scoring Condition</div>
+				<div class="flex items-center gap-8">
+					<div class="flex items-center gap-2.5">
+						<input
+							type="radio"
+							checked="true"
+							name="scoring"
+							id="scoring-score"
+							value="score"
+							class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all"
+						/>
+						<label for="scoring-score">Score</label>
 					</div>
-					<div class="flex gap-5 items-center">
-						<input type="checkbox" name="testStarsVisible" id="testStarsVisible">
-						<label for="testStarsVisible">Stars Visible?</label>
+					<div class="flex items-center gap-2.5">
+						<input
+							type="radio"
+							name="scoring"
+							id="scoring-acc"
+							value="acc"
+							class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all"
+						/>
+						<label for="scoring-acc">Accuracy</label>
+					</div>
+					<div class="flex items-center gap-2.5">
+						<input
+							type="radio"
+							name="scoring"
+							id="scoring-combo"
+							value="combo"
+							class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all"
+						/>
+						<label for="scoring-combo">Max Combo</label>
+					</div>
+					<div class="flex items-center gap-2.5">
+						<input
+							type="radio"
+							name="scoring"
+							id="scoring-miss"
+							value="miss"
+							class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all"
+						/>
+						<label for="scoring-miss">Lowest Misscount</label>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-col gap-5 p-5 rounded-xl border-1 border-surface-0 bg-base text-text">
-			<div class="font-medium">Control</div>
-			<button id="toggleMappool"
-				type="button"
-				class="p-5 rounded-xl bg-base border-1 border-surface-0 cursor-pointer hover:bg-surface-0">Toggle
-				Mappool</button>
-			<div class="font-medium">Scoring Condition</div>
-			<div class="flex items-center gap-8">
-				<div class="flex items-center gap-2.5">
-					<input type="radio" checked="true" name="scoring" id="scoring-score" value="score"
-						class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all">
-					<label for="scoring-score">Score</label>
-				</div>
-				<div class="flex items-center gap-2.5">
-					<input type="radio" name="scoring" id="scoring-acc" value="acc"
-						class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all">
-					<label for="scoring-acc">Accuracy</label>
-				</div>
-				<div class="flex items-center gap-2.5">
-					<input type="radio" name="scoring" id="scoring-combo" value="combo"
-						class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all">
-					<label for="scoring-combo">Max Combo</label>
-				</div>
-				<div class="flex items-center gap-2.5">
-					<input type="radio" name="scoring" id="scoring-miss" value="miss"
-						class="appearance-none w-5 h-5 rounded-full border-2 border-surface-0 checked:border-text before:content-['_'] before:transition-all before:w-0 before:h-0 checked:before:w-2.5 checked:before:h-2.5 before:rounded-full before:block before:bg-text flex items-center justify-center transition-all">
-					<label for="scoring-miss">Lowest Misscount</label>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="module" src="/src/main.ts"></script>
-</body>
-
+		<script type="module" src="/src/main.ts"></script>
+	</body>
 </html>

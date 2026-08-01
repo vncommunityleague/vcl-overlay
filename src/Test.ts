@@ -50,11 +50,11 @@ export default class Test {
 		scoreHandler,
 		gameStateHandler,
 	}: {
-		beatmapHandler: BeatmapHandler;
-		chatHandler: ChatHandler;
-		teamHandler: TeamHandler;
-		scoreHandler: ScoreHandler;
-		gameStateHandler: GameStateHandler;
+		beatmapHandler?: BeatmapHandler;
+		chatHandler?: ChatHandler;
+		teamHandler?: TeamHandler;
+		scoreHandler?: ScoreHandler;
+		gameStateHandler?: GameStateHandler;
 	}) {
 		this.beatmapHandler = beatmapHandler;
 		this.chatHandler = chatHandler;

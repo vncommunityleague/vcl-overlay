@@ -75,10 +75,9 @@ export default class ScoreHandler {
 		this.scoreRightElement = document.querySelector("#scoreRight");
 		this.differenceElement = document.querySelector("#difference");
 
-		this.barLeftContainerElement = document.querySelector("#barLeftContainer");
+		this.barLeftContainerElement = document.querySelector("#containerLeft");
 		this.barLeftElement = document.querySelector("#barLeft");
-		this.barRightContainerElement =
-			document.querySelector("#barRightContainer");
+		this.barRightContainerElement = document.querySelector("#containerRight");
 		this.barRightElement = document.querySelector("#barRight");
 
 		this.countUpLeft = new CountUp(
@@ -91,11 +90,10 @@ export default class ScoreHandler {
 			0,
 			this.COUNT_UP_BASE_OPTIONS,
 		);
-		this.countUpDiff = new CountUp(
-			this.differenceElement ?? "#difference",
-			0,
-			this.COUNT_UP_BASE_OPTIONS,
-		);
+		this.countUpDiff = new CountUp(this.differenceElement ?? "#difference", 0, {
+			...this.COUNT_UP_BASE_OPTIONS,
+			prefix: "+",
+		});
 		this.countUpLeft.start();
 		this.countUpRight.start();
 		this.countUpDiff.start();
@@ -148,7 +146,7 @@ export default class ScoreHandler {
 				const accuracyRight = this.clients
 					.filter((client) => client.team === "right")
 					.reduce((acc, curr, _, arr) => acc + curr.accuracy / arr.length, 0);
-				
+
 				this.updateScoring(accuracyLeft, accuracyRight);
 				break;
 			}
@@ -250,13 +248,6 @@ export default class ScoreHandler {
 		this.countUpRight.update(scoringRight);
 		this.countUpDiff.update(Math.abs(difference));
 
-		this.barLeftContainerElement.style.minWidth = `calc(${
-			getComputedStyle(this.scoreLeftElement).width
-		} / 2)`;
-		this.barRightContainerElement.style.minWidth = `calc(${
-			getComputedStyle(this.scoreRightElement).width
-		} / 2)`;
-
 		const isLeftLeading =
 			difference > 0 ===
 			(this.scoringCondition !== ScoringCondition.MISS_COUNT);
@@ -264,19 +255,29 @@ export default class ScoreHandler {
 			difference < 0 ===
 			(this.scoringCondition !== ScoringCondition.MISS_COUNT);
 
-		this.barLeftElement.style.width = isLeftLeading
-			? `calc(${Math.min(1, lineDiffFactor)} * 960px)`
-			: "0px";
-		this.barRightElement.style.width = isRightLeading
-			? `calc(${Math.min(1, lineDiffFactor)} * 960px)`
-			: "0px";
+		this.barLeftContainerElement.style.flex = "1";
+		this.barRightContainerElement.style.flex = "1";
 
 		if (isLeftLeading) {
-			this.differenceElement?.classList.remove("right-[50%]");
-			this.differenceElement?.classList.add("left-[50%]");
-		} else {
-			this.differenceElement?.classList.add("right-[50%]");
-			this.differenceElement?.classList.remove("left-[50%]");
+			this.barLeftContainerElement.style.flex = `${(50 + 50 * lineDiffFactor) / (50 - 50 * lineDiffFactor)}`;
+			this.barRightContainerElement.style.flex = "1";
+
+			this.scoreLeftElement.classList.add("text-7xl", "font-bold");
+			this.scoreLeftElement.classList.remove("text-4xl");
+
+			this.scoreRightElement.classList.add("text-4xl");
+			this.scoreRightElement.classList.remove("text-7xl", "font-bold");
+		}
+
+		if (isRightLeading) {
+			this.barRightContainerElement.style.flex = `${(50 + 50 * lineDiffFactor) / (50 - 50 * lineDiffFactor)}`;
+			this.barLeftContainerElement.style.flex = "1";
+
+			this.scoreLeftElement.classList.add("text-4xl");
+			this.scoreLeftElement.classList.remove("text-7xl", "font-bold");
+
+			this.scoreRightElement.classList.add("text-7xl", "font-bold");
+			this.scoreRightElement.classList.remove("text-4xl");
 		}
 	}
 
@@ -315,11 +316,10 @@ export default class ScoreHandler {
 			0,
 			countUpOptions,
 		);
-		this.countUpDiff = new CountUp(
-			this.differenceElement ?? "#difference",
-			0,
-			countUpOptions,
-		);
+		this.countUpDiff = new CountUp(this.differenceElement ?? "#difference", 0, {
+			...countUpOptions,
+			prefix: "+",
+		});
 		this.countUpLeft.start();
 		this.countUpRight.start();
 		this.countUpDiff.start();
