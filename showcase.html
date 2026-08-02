@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg" href="/vcl.svg" />
 		<link rel="stylesheet" href="/src/style.css" />
+		<link rel="stylesheet" href="/src/styles/background.css" />
 		<link rel="stylesheet" href="/src/styles/theme.css" />
 		<link rel="stylesheet" href="/src/styles/scrollbar.css" />
 		<title>hyrn's Skillcap Cup Showcase</title>
@@ -12,7 +13,8 @@
 
 	<body>
 		<div id="app" class="absolute top-0 left-0 w-[1920px] h-[1080px]">
-			<div class="absolute bottom-0 left-0 w-full h-20 flex justify-between items-center bg-base">
+			<div class="absolute bottom-0 left-0 w-full h-20 flex justify-between items-center">
+				<video class="absolute top-0 left-0 size-full transition-all object-cover object-bottom" id="background" src="/Background.webm" autoplay muted loop></video>
 				<div
 					id="beatmap"
 					class="relative text-sm w-[80%] h-full flex items-center gap-3 px-9 text-white rounded-l-full overflow-hidden bg-cover bg-center ml-auto"
