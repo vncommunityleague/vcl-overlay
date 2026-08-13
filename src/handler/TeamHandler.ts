@@ -46,7 +46,7 @@ export default class TeamHandler {
 						const avatar = document.querySelector<HTMLDivElement>("#avatarLeft");
 						if (!avatar) break;
 
-						avatar.style.backgroundImage = `url(https://api.try-z.net/a/${name})`;
+						avatar.style.backgroundImage = `url(https://api.try-z.net/a/${encodeURIComponent(name)})`;
 						break;
 					}
 					case "nameRight": {
