@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg" href="/vcl.svg" />
+		<link rel="stylesheet" href="/src/style.css" />
+		<link rel="stylesheet" href="/src/styles/background.css" />
+		<link rel="stylesheet" href="/src/styles/theme.css" />
+		<link rel="stylesheet" href="/src/styles/scrollbar.css" />
+		<title>hyrn's Skillcap Cup Winner</title>
+	</head>
+
+	<body>
+		<div id="app" class="absolute top-0 left-0 w-[1920px] h-[1080px]">
+			<video class="absolute top-0 left-0 size-full transition-all" src="/Background.webm" autoplay muted loop></video>
+			<div id="avatar" class="absolute size-80 rounded-4xl top-0 bottom-0 right-[50%] mr-10 my-auto bg-cover bg-center"></div>
+			<div class="absolute left-[50%] top-0 bottom-0 my-auto ml-10 flex flex-col justify-center h-max">
+				<div id="name" class="text-8xl font-bold text-white uppercase">PLAYER NAME</div>
+				<div class="font-medium text-4xl text-white">Winner - <span id="roundName">Round Name</span></div>
+			</div>
+		</div>
+		<script type="module" src="/src/winner.ts"></script>
+	</body>
+</html>

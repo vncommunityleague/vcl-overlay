@@ -40,6 +40,7 @@ export default defineConfig({
 			input: {
 				main: resolve(import.meta.dirname, "index.html"),
 				showcase: resolve(import.meta.dirname, "showcase.html"),
+				winner: resolve(import.meta.dirname, "winner.html"),
 			},
 		},
 		cssCodeSplit: true,
